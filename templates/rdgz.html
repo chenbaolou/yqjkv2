@@ -123,7 +123,7 @@
 <script src="{{prefix}}/static/js/index.js"></script>
 
 <script>
-    var selected_date = "";
+    var selected_date = "2019-10-20";
     var selected_hour = 10;
     function load_table_hour_detail(){
       var _date = selected_date;
@@ -262,7 +262,7 @@
     }       
         // 建立socket连接，等待服务器“推送”数据，用回调函数更新图表
     $(document).ready(function() {
-      var today_date = new Date().format("yyyy-MM-dd");
+      var today_date = new Date("2019-10-20").format("yyyy-MM-dd");
         $('.form_datetime').datetimepicker({
           weekStart: 0, //一周从哪一天开始
           todayBtn:  1, //
@@ -275,12 +275,15 @@
           format: "yyyy-mm-dd",
           todayBtn: true,
           pickerPosition: "bottom-left",
+          initialDate: new Date("2019-10-20"),
           endDate: today_date
         }).on("changeDate", function(ev){
           selected_date = ev.date.format("yyyy-MM-dd");
           bbs_stat();
         });
+        
         $("#date_input").val(today_date);
+        
         function hot_list() {
           $.ajax({
               url: '{{prefix}}/hot_list?selected_date='+selected_date,
