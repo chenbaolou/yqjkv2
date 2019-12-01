@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" sizes="any" mask href="{{prefix}}/static/favicon.ico">
+    <link href="{{prefix}}/static/css/BigData.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index01.css" rel="stylesheet" type="text/css" />
+    <script src="{{prefix}}/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="{{prefix}}/static/css/bootstrap-datetimepicker.min.css"> 
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{prefix}}/static/js/artDialog/skins/default.css" type="text/css"/>
+    <script src="{{prefix}}/static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>「小蓝鱼」网络舆情监测</title>
+</head>
+<body >
+<div class="data_bodey">
+    <div class="index_nav" >
+        <ul style="height: 30px; margin-bottom: 0px;">
+            <li class="l_left total_chose_pl">热点关注</li>
+            <li class="l_left total_chose_pl">情感分析</li>
+            <li class="r_right total_chose_pl nav_active">互动体验</li>
+            <li class="r_right total_chose_pl">主题检索</li>
+        </ul>
+        <div class="total_chose_box">
+            <div style="height: 32px;"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="index_tabs" >
+        <div class="inner">
+            <div class="data_left03" style="height: 98%;width: 49%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 4.5%; font-size: 16px;">你说我听~</div>
+                            <textarea id="qgfx_input" style="margin-left: 1%; margin-top: 1%; width: 98%; height: 36%; border: #00c0ef 2px solid; background-color: #ddd;" placeholder="请输入一段文字来表达对交行信用卡产品或服务的评价"></textarea>
+                            <div>
+                                <button style="background-color: #00c0ef; color: white; border: #00cdff 2px solid; border-radius: 5px; float: left; margin-left: 20px;width: 110px; margin-left: 43%;" id="qgfx_btn">提交情感测试</button>
+                            </div>
+                            <div id="qgfx_ing" style="margin-top: 30px; text-align: center; display: none;">
+                                <img src="{{prefix}}/static/images/compute.gif"/>
+                            </div>
+                            <div class="data_chart02" id="qgfx_result" style="height: 80%; margin-top: 22px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 98%; width: 49%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 4.5%; font-size: 16px;">你说我分~</div>
+                            <textarea id="ztgn_input" style="margin-left: 1%; margin-top: 1%; width: 98%; height: 36%; border: #00c0ef 2px solid; background-color: #ddd;" placeholder="请输入一段文字来表达对交行信用卡产品或服务的评价"></textarea>
+                            <div>
+                                <button class="chose_enter" style="width: 110px; margin-left: 43%;" id="ztgn_btn">提交主题归纳</button>
+                            </div>
+                            <div id="ztgn_ing" style="margin-top: 30px; text-align: center; display: none;">
+                                    <img src="{{prefix}}/static/images/compute.gif"/>
+                                </div>
+                                <div class="data_chart02" id="ztgn_result" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 6%; text-align: center; line-height: 34px;">
+            <span style="color: white; vertical-align: center;">©️「数据之声」网络舆情监测项目小组</span>
+        </div>
+    </div>
+</div>
+
+<script src="{{prefix}}/static/js/echarts.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap.min.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="{{prefix}}/static/js/jquery.pagination.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="{{prefix}}/static/js/index.js"></script>
+<script>
+$(document).ready(function(){
+    var qgfx_result = echarts.init(document.getElementById('qgfx_result'));
+    // 指定图表的配置项和数据
+    function show_result(num) {
+        qgfx_result.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            grid:{
+                borderWidth:0,
+                left: '5%',
+                right: '5%',
+                top: '5%',
+                bottom: '5%'
+            },
+            series: [{
+                name: '情感倾向',
+                type: 'gauge',
+                radius: "80%",
+                startAngle: 180,
+                endAngle: 0,
+                title : {
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        fontSize: 10,
+                        fontStyle: 'italic',
+                        color:"white"
+                    }
+                },
+                axisLabel: {
+                    formatter: function(v){
+                        switch(v){
+                            case 20: return "积极";
+                            case 50: return "中性";
+                            case 80: return "消极";
+                            default: return "";
+                        }
+                    },
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 12
+                    }
+                },
+                pointer: {
+                    width: 10, 
+                    length: '85%',
+                    color: "rgba(255,255,255,0.8)"
+                },
+                axisLine: {            // 坐标轴线  
+                     lineStyle: {       // 属性lineStyle控制线条样式  
+                        color: [[0.3, '#FF3030'], [0.7, '#63869e'], [1, '#0000FF']]
+                    }  
+                },   
+                detail: { 
+                    show: false,
+                    formatter: '{value}%' 
+                },
+                data: [{ value: num, name: '' }]
+            }]
+        });
+    }
+    show_result(30);
+    
+    $("#qgfx_result").hide();
+    
+    $("#qgfx_btn").click(function(){
+        var input_text = $.trim($("#qgfx_input").val());
+        if(input_text == "") {
+            alert("输入内容不能为空");
+            return false;
+        }
+        console.log(input_text);
+        $.post("{{prefix}}/sentiment_classify", {text: input_text},function(result){
+            console.log(result.items[0]);
+            var positive_prob = result.items[0].positive_prob;
+            positive_prob = Math.round(positive_prob*100);
+            show_result(100-positive_prob);
+            $("#qgfx_ing").hide();
+            $("#qgfx_result").show();
+        });
+        $("#qgfx_result").hide();
+        $("#qgfx_ing").show();
+    });
+    $("#qgfx_ing").click(function(){
+        $("#qgfx_ing").hide();
+        $("#qgfx_result").show();
+    });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

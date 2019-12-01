@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" sizes="any" mask href="{{prefix}}/static/favicon.ico">
+    <link href="{{prefix}}/static/css/BigData.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index01.css" rel="stylesheet" type="text/css" />
+    <script src="{{prefix}}/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="{{prefix}}/static/css/bootstrap-datetimepicker.min.css"> 
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{prefix}}/static/js/artDialog/skins/default.css" type="text/css"/>
+    <script src="{{prefix}}/static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>「小蓝鱼」网络舆情监测</title>
+
+</head>
+<body >
+<div class="data_bodey">
+    <div class="index_nav" >
+        <ul style="height: 30px; margin-bottom: 0px;">
+            <li class="l_left total_chose_pl nav_active">热点关注</li>
+            <li class="l_left total_chose_pl">情感分析</li>
+            <li class="r_right total_chose_pl">互动体验</li>
+            <li class="r_right total_chose_pl">主题检索</li>
+        </ul>
+        <div class="total_chose_box">
+            <div style="height: 32px;"></div>
+            <span class="chose_tltle">请选取查询的日期</span>
+            <div class="input-group date form_datetime col-md-4" type="date" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1" style="width: 205px">
+            <!-- <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1"> -->
+              <input class="form-control" size="14" type="text" id="date_input" readonly style="height: 24px; width: 120px; margin-left:6px;">
+                <span class="input-group-addon" style="display:inline-block;height:24px !important;"><span class="glyphicon glyphicon-remove" style="margin-left:-6px; margin-top:-2px;"></span></span>
+                <span class="input-group-addon" style="display:inline-block;height:24px !important;"><span class="glyphicon glyphicon-th" style="margin-left:-6px; margin-top:-2px;"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value="" />
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="index_tabs" >
+        <div class="inner">
+            <div class="data_left03" style="height: 49.7%;width: 32%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">热点事件</div>
+                            <div class="data_chart02" id="ftl_sta1111"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%;width: 32.5%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">当日准实时发帖量统计</div>
+                            <div class="data_chart02" id="ftl_sta"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 33%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;" id="date_hour_title"></div>
+                            <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%; overflow:auto;">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th style="font-size: 16px;">标题</th>
+                                        <th style="font-size: 16px; width: 65px;">发表时间</th>
+                                        <th style="font-size: 16px;">回帖内容</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="table_hour_detail">               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 98.7%; margin-top: 0.6%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">当日热帖展示</div>
+                            <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%;overflow:auto;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th style="font-size: 16px; width: 45%;">标题</th>
+                                        <th style="font-size: 16px;  width: 15%;">原帖发表时间</th>
+                                        <th style="font-size: 16px; width: 15%;">最新跟帖时间</th>
+                                        <th style="font-size: 16px; width: 10%;">当日跟帖数</th>
+                                        <th style="font-size: 16px; width: 10%;">累计跟帖数</th>
+                                        <th style="font-size: 16px; width: 5%;">原帖链接</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="t_test1_1">               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 6%; text-align: center; line-height: 34px;">
+            <span style="color: white; vertical-align: center;">©️「数据之声」网络舆情监测项目小组</span>
+        </div>
+    </div>
+</div>
+
+<script src="{{prefix}}/static/js/echarts.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap.min.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="{{prefix}}/static/js/jquery.pagination.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="{{prefix}}/static/js/index.js"></script>
+
+<script>
+    var selected_date = "";
+    var selected_hour = 10;
+    function load_table_hour_detail(){
+      var _date = selected_date;
+      if(_date == ""){
+        _date = new Date().format("yyyy-MM-dd");
+      }
+      $("#date_hour_title").html(_date+" "+selected_hour.toString()+"时")
+      $.ajax({
+        url: '{{prefix}}/hour_hot_list?selected_hour='+selected_hour+"&selected_date="+selected_date,
+        type: 'GET',
+        success: function(data){
+          //清空table中的html
+          $("#table_hour_detail").html("");
+          for(var i = 0;i<data.length;i++){
+              str1 = "<tr>" + 
+                  "<td><a href='"+data[i].url+"' title='"+data[i].url+"'>"+data[i].theme + "</a></td>" +
+                  "<td>"+data[i].cm_launch_tme + "</td>" +
+                  "<td>"+data[i].remark + "</td>" +                      
+                  "</tr>";
+              $("#table_hour_detail").append(str1);
+          }
+        }
+      });
+    }
+
+    //test1_01
+    var test1_01= echarts.init($('#ftl_sta')[0]);
+    test1_01.on("click", function(params){
+      //console.log(params.dataIndex, params.value);
+      selected_hour = params.dataIndex;
+      load_table_hour_detail();
+    });
+    var eet_option = {
+        
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: [],
+            splitLine:{show: false},
+            axisLabel : {
+                formatter: '{value} ',
+                textStyle: {
+                    color: '#4F89BD',
+                    align: 'right'
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color: '#4F89BD',
+                    width: 2,
+                }
+            },
+            show:true
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel : {
+                textStyle: {
+                    color: '#4F89BD',
+                    align: 'right'
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color: '#4F89BD',
+                    width: 2,
+                }
+            },
+        },
+        grid:{
+            borderWidth:0,
+            left: '5%',
+            right: '5%',
+            top: '10%',
+            bottom: '10%'
+        },
+        series: [{
+            data: [],
+            type: 'line',
+            itemStyle: {
+                normal: {
+                    color: "#42BCBE",
+                    lineStyle: {
+                        color: "#42BCBE"
+                    }
+                }
+            },
+        }]
+    };
+    test1_01.setOption(eet_option);
+
+
+    var update_charts_bbs_stat = function (res) {
+      var et_data = res;
+      if(et_data != "") {
+        test1_01.setOption({
+            xAxis: {
+              type: 'category',
+              //data: et_data["mth_list"]
+              data: et_data[0]
+            },
+            series: [{
+              //data: et_data["cnt_list"],
+              data: et_data[1],
+              type: 'line'
+            }]
+        });
+      }
+      test1_01.hideLoading();
+    };
+
+    Date.prototype.format = function(fmt) { 
+      var o = { 
+          "M+" : this.getMonth()+1,                 //月份 
+          "d+" : this.getDate(),                    //日 
+          "h+" : this.getHours(),                   //小时 
+          "m+" : this.getMinutes(),                 //分 
+          "s+" : this.getSeconds(),                 //秒 
+          "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+          "S"  : this.getMilliseconds()             //毫秒 
+      }; 
+      if(/(y+)/.test(fmt)) {
+              fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+      }
+      for(var k in o) {
+          if(new RegExp("("+ k +")").test(fmt)){
+              fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+          }
+      }
+      return fmt; 
+    }       
+        // 建立socket连接，等待服务器“推送”数据，用回调函数更新图表
+    $(document).ready(function() {
+      var today_date = new Date().format("yyyy-MM-dd");
+        $('.form_datetime').datetimepicker({
+          weekStart: 0, //一周从哪一天开始
+          todayBtn:  1, //
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: "decade", //选择日期后，不会再跳转去选择时分秒 
+          forceParse: 0,
+          showMeridian: 1,
+          format: "yyyy-mm-dd",
+          todayBtn: true,
+          pickerPosition: "bottom-left",
+          endDate: today_date
+        }).on("changeDate", function(ev){
+          selected_date = ev.date.format("yyyy-MM-dd");
+          bbs_stat();
+        });
+        $("#date_input").val(today_date);
+        function hot_list() {
+          $.ajax({
+              url: '{{prefix}}/hot_list?selected_date='+selected_date,
+              type: 'GET',
+              success: function(data){
+                //清空table中的html
+                $("#t_test1_1").html("");
+                for(var i = 0;i<data.length;i++){
+                    str1 = "<tr>" + 
+                        "<td>"+data[i].theme + "</td>" +
+                        "<td>"+data[i].min_cm_launch_tme + "</td>" +
+                        "<td>"+data[i].max_cm_launch_tme + "</td>" +
+                        "<td>"+data[i].count_today + "</td>" +
+                        "<td>"+data[i].cnt + "</td>" +                        
+                        "<td><a href='"+data[i].url+"' title='"+data[i].url+"'>"+'看原帖'+"</a></td>" +
+                        //"<td>"+data[i].url+"</td>" +                  
+                        "</tr>";
+                    $("#t_test1_1").append(str1);
+                }
+              }
+            })
+        }
+        function bbs_stat() {
+          $.ajax({
+            url: '{{prefix}}/bbs_stat?selected_date='+selected_date,
+            type: 'GET',
+            success: function(data){
+              update_charts_bbs_stat(data);
+            }
+          })
+        }
+        test1_01.showLoading({
+            text: '小鱼在努力加载...',
+            color: '#42BCBE',
+            textColor: '#000',
+            maskColor: 'rgba(255, 255, 255, 0.8)',
+            zlevel: 0
+        });
+        hot_list();
+        bbs_stat();
+        load_table_hour_detail();
+        setInterval(hot_list, 5000); 
+        setInterval(bbs_stat, 5000);
+    });
+</script>
+</body>
+</html>

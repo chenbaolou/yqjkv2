@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" sizes="any" mask href="{{prefix}}/static/favicon.ico">
+    <link href="{{prefix}}/static/css/BigData.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index01.css" rel="stylesheet" type="text/css" />
+    <script src="{{prefix}}/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="{{prefix}}/static/css/bootstrap-datetimepicker.min.css"> 
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{prefix}}/static/js/artDialog/skins/default.css" type="text/css"/>
+    <script src="{{prefix}}/static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>「小蓝鱼」网络舆情监测</title>
+
+</head>
+<body >
+<div class="data_bodey">
+    <div class="index_nav" >
+        <ul style="height: 30px; margin-bottom: 0px;">
+            <li class="l_left total_chose_pl">热点关注</li>
+            <li class="l_left total_chose_pl">情感分析</li>
+            <li class="r_right total_chose_pl">互动体验</li>
+            <li class="r_right total_chose_pl nav_active">主题检索</li>
+        </ul>
+        <div class="total_chose_box">
+            <div style="height: 32px;"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="index_tabs" >
+        <div class="inner">
+            <div class="data_left03" style="height: 100%; width: 40%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 5%; font-size: 16px;">主题分布</div>
+                            <div id="echart_demo2" class="data_chart02"></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 58.4%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">主题</div>
+                            <div id="echart_demo1" class="data_chart02"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 29%; margin-top: 0.6%">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">主题1</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 29%; margin-top: 0.6%">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">主题2</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 6%; text-align: center; line-height: 34px;">
+            <span style="color: white; vertical-align: center;">©️「数据之声」网络舆情监测项目小组</span>
+        </div>
+    </div>
+</div>
+
+<script src="{{prefix}}/static/js/echarts.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap.min.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="{{prefix}}/static/js/jquery.pagination.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="{{prefix}}/static/js/index.js"></script>
+
+<!--轨迹回放时间日期选择-->
+<script>
+   // echart_demo1 start
+    var myChart1 = echarts.init(document.getElementById('echart_demo1'));
+    var option1= {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'line',
+                lineStyle: {
+                    color: 'rgba(0,0,0,0.2)',
+                    width: 1,
+                    type: 'solid'
+                }
+            }
+        },
+        legend: {
+            data: ['买单吧', '积分', '额度', '好享贷', '最红星期五', '白麒麟'],
+            textStyle: {
+                color: '#FFFFFF'
+            }
+        },
+        singleAxis: {
+            top: 50,
+            bottom: 50,
+            axisTick: {},
+            axisLabel: {},
+            type: 'time',
+            axisPointer: {
+                animation: true,
+                label: {
+                    show: true
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    type: 'dashed',
+                    opacity: 0.2
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color: '#4F89BD',
+                    width: 2,
+                }
+            },
+        },
+        grid:{
+            borderWidth:0,
+            left: '5%',
+            right: '5%',
+            top: '3%',
+            bottom: '8%'
+        },
+        series: [
+            {
+                type: 'themeRiver',
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 20,
+                        shadowColor: 'rgba(0, 0, 0, 0.8)'
+                    }
+                },
+                data: [['2019/09/08',10,'买单吧'],['2019/09/09',15,'买单吧'],['2019/09/10',35,'买单吧'],
+                ['2019/09/11',38,'买单吧'],['2019/09/12',22,'买单吧'],['2019/09/13',16,'买单吧'],
+                ['2019/09/14',7,'买单吧'],['2019/09/15',2,'买单吧'],['2019/09/16',17,'买单吧'],
+                ['2019/09/17',33,'买单吧'],['2019/09/18',40,'买单吧'],['2019/09/19',32,'买单吧'],
+                ['2019/09/20',26,'买单吧'],['2019/09/21',35,'买单吧'],['2019/09/22',40,'买单吧'],
+                ['2019/09/23',32,'买单吧'],['2019/09/24',26,'买单吧'],['2019/09/25',22,'买单吧'],
+                ['2019/09/26',16,'买单吧'],['2019/09/27',22,'买单吧'],['2019/09/28',10,'买单吧'],
+                ['2019/09/08',35,'积分'],['2019/09/09',36,'积分'],['2019/09/10',37,'积分'],
+                ['2019/09/11',22,'积分'],['2019/09/12',24,'积分'],['2019/09/13',26,'积分'],
+                ['2019/09/14',34,'积分'],['2019/09/15',21,'积分'],['2019/09/16',18,'积分'],
+                ['2019/09/17',45,'积分'],['2019/09/18',32,'积分'],['2019/09/19',35,'积分'],
+                ['2019/09/20',30,'积分'],['2019/09/21',28,'积分'],['2019/09/22',27,'积分'],
+                ['2019/09/23',26,'积分'],['2019/09/24',15,'积分'],['2019/09/25',30,'积分'],
+                ['2019/09/26',35,'积分'],['2019/09/27',42,'积分'],['2019/09/28',42,'积分'],
+                ['2019/09/08',21,'额度'],['2019/09/09',25,'额度'],['2019/09/10',27,'额度'],
+                ['2019/09/11',23,'额度'],['2019/09/12',24,'额度'],['2019/09/13',21,'额度'],
+                ['2019/09/14',35,'额度'],['2019/09/15',39,'额度'],['2019/09/16',40,'额度'],
+                ['2019/09/17',36,'额度'],['2019/09/18',33,'额度'],['2019/09/19',43,'额度'],
+                ['2019/09/20',40,'额度'],['2019/09/21',34,'额度'],['2019/09/22',28,'额度'],
+                ['2019/09/23',26,'额度'],['2019/09/24',37,'额度'],['2019/09/25',41,'额度'],
+                ['2019/09/26',46,'额度'],['2019/09/27',47,'额度'],['2019/09/28',41,'额度'],
+                ['2019/09/08',10,'好享贷'],['2019/09/09',15,'好享贷'],['2019/09/10',35,'好享贷'],
+                ['2019/09/11',38,'好享贷'],['2019/09/12',22,'好享贷'],['2019/09/13',16,'好享贷'],
+                ['2019/09/14',7,'好享贷'],['2019/09/15',2,'好享贷'],['2019/09/16',17,'好享贷'],
+                ['2019/09/17',33,'好享贷'],['2019/09/18',40,'好享贷'],['2019/09/19',32,'好享贷'],
+                ['2019/09/20',26,'好享贷'],['2019/09/21',35,'好享贷'],['2019/09/22',40,'好享贷'],
+                ['2019/09/23',32,'好享贷'],['2019/09/24',26,'好享贷'],['2019/09/25',22,'好享贷'],
+                ['2019/09/26',16,'好享贷'],['2019/09/27',22,'好享贷'],['2019/09/28',10,'好享贷'],
+                ['2019/09/08',10,'最红星期五'],['2019/09/09',15,'最红星期五'],['2019/09/10',35,'最红星期五'],
+                ['2019/09/11',38,'最红星期五'],['2019/09/12',22,'最红星期五'],['2019/09/13',16,'最红星期五'],
+                ['2019/09/14',7,'最红星期五'],['2019/09/15',2,'最红星期五'],['2019/09/16',17,'最红星期五'],
+                ['2019/09/17',33,'最红星期五'],['2019/09/18',40,'最红星期五'],['2019/09/19',32,'最红星期五'],
+                ['2019/09/20',26,'最红星期五'],['2019/09/21',35,'最红星期五'],['2019/09/22',4,'最红星期五'],
+                ['2019/09/23',32,'最红星期五'],['2019/09/24',26,'最红星期五'],['2019/09/25',22,'最红星期五'],
+                ['2019/09/26',16,'最红星期五'],['2019/09/27',22,'最红星期五'],['2019/09/28',10,'最红星期五'],
+                ['2019/09/08',10,'白麒麟'],['2019/09/09',15,'白麒麟'],['2019/09/10',35,'白麒麟'],
+                ['2019/09/11',38,'白麒麟'],['2019/09/12',22,'白麒麟'],['2019/09/13',16,'白麒麟'],
+                ['2019/09/14',7,'白麒麟'],['2019/09/15',2,'白麒麟'],['2019/09/16',17,'白麒麟'],
+                ['2019/09/17',33,'白麒麟'],['2019/09/18',4,'白麒麟'],['2019/09/19',32,'白麒麟'],
+                ['2019/09/20',26,'白麒麟'],['2019/09/21',35,'白麒麟'],['2019/09/22',40,'白麒麟'],
+                ['2019/09/23',32,'白麒麟'],['2019/09/24',26,'白麒麟'],['2019/09/25',22,'白麒麟'],
+                ['2019/09/26',16,'白麒麟'],['2019/09/27',22,'白麒麟'],['2019/09/28',10,'白麒麟']]
+            }
+        ]
+    };
+    myChart1.setOption(option1);
+    // echart_demo1 end
+
+    // echart_demo2 start
+    var myChart2 = echarts.init(document.getElementById('echart_demo2'));
+    var option2 = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'horizontal',
+            x: 'left',
+            data:['白麒麟','羊毛','积分','额度','好享贷','风控','年费','周周刷','沃尔玛','账单'],
+            textStyle: {
+                color: '#FFFFFF'
+            }
+        },
+        series: [
+            {
+                name:'关键词',
+                type:'pie',
+                selectedMode: 'single',
+                radius: [0, '30%'],
+
+                label: {
+                    normal: {
+                        position: 'inner'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'主题1', selected:true},
+                    {value:679, name:'主题2'},
+                    {value:1548, name:'主题3'}
+                ]
+            },
+            {
+                name:'关键词',
+                type:'pie',
+                radius: ['40%', '55%'],
+                label: {
+                    normal: {
+                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                        backgroundColor: '#eee',
+                        borderColor: '#aaa',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        // shadowBlur:3,
+                        // shadowOffsetX: 2,
+                        // shadowOffsetY: 2,
+                        // shadowColor: '#999',
+                        // padding: [0, 7],
+                        rich: {
+                            a: {
+                                color: '#999',
+                                lineHeight: 22,
+                                align: 'center'
+                            },
+                            // abg: {
+                            //     backgroundColor: '#333',
+                            //     width: '100%',
+                            //     align: 'right',
+                            //     height: 22,
+                            //     borderRadius: [4, 4, 0, 0]
+                            // },
+                            hr: {
+                                borderColor: '#aaa',
+                                width: '100%',
+                                borderWidth: 0.5,
+                                height: 0
+                            },
+                            b: {
+                                fontSize: 16,
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#eee',
+                                backgroundColor: '#334455',
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },
+                data:[
+                    {value:335, name:'白麒麟'},
+                    {value:310, name:'羊毛'},
+                    {value:234, name:'积分'},
+                    {value:135, name:'额度'},
+                    {value:1048, name:'好享贷'},
+                    {value:251, name:'风控'},
+                    {value:147, name:'年费'},
+                    {value:102, name:'周周刷'}
+                ]
+            }
+        ]
+    };
+                    
+    myChart2.setOption(option2);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

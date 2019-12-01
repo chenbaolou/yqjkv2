@@ -1,0 +1,526 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" sizes="any" mask href="{{prefix}}/static/favicon.ico">
+    <link href="{{prefix}}/static/css/BigData.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/index01.css" rel="stylesheet" type="text/css" />
+    <script src="{{prefix}}/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="{{prefix}}/static/css/bootstrap-datetimepicker.min.css"> 
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="{{prefix}}/static/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{prefix}}/static/js/artDialog/skins/default.css" type="text/css"/>
+    <script src="{{prefix}}/static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>「小蓝鱼」网络舆情监测</title>
+</head>
+<body >
+<div class="data_bodey">
+    <div class="index_nav" >
+        <ul style="height: 30px; margin-bottom: 0px;">
+            <li class="l_left total_chose_pl">热点关注</li>
+            <li class="l_left total_chose_pl nav_active">情感分析</li>
+            <li class="r_right total_chose_pl">互动体验</li>
+            <li class="r_right total_chose_pl">主题检索</li>
+        </ul>
+        <div class="total_chose_box">
+            <div style="height: 32px;"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="index_tabs" >
+        <div class="inner">
+            <div class="data_left03" style="height: 49.7%;width: 32%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">仪表盘</div>
+                            <div class="data_chart02" id="gauge_chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%;width: 32.5%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">正面评价TOP3</div>
+                            <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th style="font-size: 16px;">标题</th>
+                                        <th style="font-size: 16px;">发表时间</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>惠民贷挺好</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ETC卡不错</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>客服态度棒棒哒</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr>               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 33%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">负面评价TOP3</div>
+                            <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                        <th style="font-size: 16px;">标题</th>
+                                        <th style="font-size: 16px;">发表时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>提额慢</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr>
+                                        <tr>
+                                            <td>我接到了莫名的催收电话</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>为什么周周刷没达标</td>
+                                            <td>2019-11-24 14:37:37</td>
+                                        </tr>               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%;width: 49%; margin-top: 0.6%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">情感分布(百分比)</div>
+                            <div class="data_chart02" id="emotion_dist_per"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data_left03" style="height: 49.7%; width: 49%; margin-top: 0.6%;">
+                <div class="dataAllNo01 maginS01">
+                    <div class="dataAllBorder01">
+                        <div class="dataAllBorder02">
+                            <div class="data_tit3" style="height: 9%; font-size: 16px;">情感分布(绝对值)</div>
+                            <div class="data_chart02" id="emotion_dist"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 6%; text-align: center; line-height: 34px;">
+            <span style="color: white; vertical-align: center;">©️「数据之声」网络舆情监测项目小组</span>
+        </div>
+    </div>
+</div>
+
+<script src="{{prefix}}/static/js/echarts.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap.min.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="{{prefix}}/static/js/jquery.pagination.js"></script>
+<script src="{{prefix}}/static/js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="{{prefix}}/static/js/index.js"></script>
+
+<script>
+$(document).ready(function() {
+    var emotion_dist = echarts.init(document.getElementById('emotion_dist'));
+    var option01 = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['负面', '中性','正面'],
+            textStyle: {
+                color: '#FFFFFF'
+            }
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        yAxis : [
+            {
+                type : 'value',
+                axisLine:{
+                    lineStyle:{
+                        color: '#4F89BD',
+                        width: 2,
+                    }
+                }
+            }
+        ],
+        xAxis: [
+            {
+                type : 'category',
+                axisLine:{
+                    lineStyle:{
+                        color: '#4F89BD',
+                        width: 2,
+                    }
+                },
+                data: ['0', '1', '2', '3']
+            }
+        ],
+        grid:{
+            borderWidth:0,
+            left: '5%',
+            right: '5%',
+            top: '12%',
+            bottom: '8%'
+        },
+        series : [
+            {
+                name:'负面',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#1C5FA4"
+                    }
+                },
+                data:[]
+            },
+            {
+                name:'中性',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#3C7FFF"
+                    }
+                },
+                data:[]
+            },
+            {
+                name:'正面',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#42BCBE"
+                    }
+                },
+                data:[]
+            }
+            
+        ]
+    };
+                    
+    emotion_dist.setOption(option01);
+    emotion_dist.showLoading({
+        text: '小鱼在努力加载...',
+        color: '#42BCBE',
+        textColor: '#000',
+        maskColor: 'rgba(255, 255, 255, 0.8)',
+        zlevel: 0
+    });  
+
+    var emotion_dist_per = echarts.init(document.getElementById('emotion_dist_per'));
+    var option02 = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['负面', '中性','正面'],
+            textStyle: {
+                color: '#FFFFFF'
+            }
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        yAxis : [
+            {
+                type : 'value',
+                axisLine:{
+                    lineStyle:{
+                        color: '#4F89BD',
+                        width: 2,
+                    }
+                }
+            }
+        ],
+        xAxis : [
+            {
+                type : 'category',
+                axisLine:{
+                    lineStyle:{
+                        color: '#4F89BD',
+                        width: 2,
+                    }
+                },
+                data: ['0', '1', '2', '3']
+            }
+        ],
+        grid:{
+            borderWidth:0,
+            left: '5%',
+            right: '5%',
+            top: '12%',
+            bottom: '8%'
+        },
+        series : [
+            {
+                name:'负面',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#1C5FA4"
+                    }
+                },
+                data:[]
+            },
+            {
+                name:'中性',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#3C7FFF"
+                    }
+                },
+                data:[]
+            },
+            {
+                name:'正面',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { 
+                    normal: {
+                        color: "#42BCBE"
+                    }
+                },
+                data:[]
+            }
+            
+        ]
+    };
+                    
+    emotion_dist_per.setOption(option02);
+    emotion_dist_per.showLoading({
+        text: '小鱼在努力加载...',
+        color: '#42BCBE',
+        textColor: '#000',
+        maskColor: 'rgba(255, 255, 255, 0.8)',
+        zlevel: 0
+    });
+
+    var update_emotion_dist = function (res) {
+      var et_data = res["emotion_dist"];
+      if(et_data != "") {
+        emotion_dist.setOption({
+            xAxis: {
+              type: 'category',
+              data: et_data["x_data"]
+            },
+            series: [{
+                name:'负面',
+                type:'bar',
+                stack: '总量',
+                data: et_data["y_data"][0]
+            },{
+                name:'中性',
+                type:'bar',
+                stack: '总量',
+                data: et_data["y_data"][1]
+            },{
+                name:'正面',
+                type:'bar',
+                stack: '总量',
+                data: et_data["y_data"][2]
+            }]
+        });
+        emotion_dist.hideLoading();
+      }
+    };
+
+    var update_emotion_dist_per = function (res) {
+      var et_data = res["emotion_dist"];
+      if(et_data != "") {
+        var data00 = [];
+        var data05 = [];
+        var data10 = []
+        var data_total = 0;
+        for(var idx = 0; idx < et_data["x_data"].length; idx++){
+            data_total = et_data["y_data"][0][idx] + et_data["y_data"][1][idx] + et_data["y_data"][2][idx];
+            if(data_total == 0) {
+                data00.push(0);
+                data05.push(0);
+                data10.push(0);
+            } else {
+                var x1 = parseInt(et_data["y_data"][0][idx]/data_total*100);
+                var x2 = parseInt(et_data["y_data"][1][idx]/data_total*100);
+                data00.push(x1);
+                data05.push(x2);
+                data10.push(100 - x1 - x2);
+            }
+        }
+
+        emotion_dist_per.setOption({
+            xAxis: {
+              type: 'category',
+              data: et_data["x_data"]
+            },
+            series: [{
+                name:'负面',
+                type:'bar',
+                stack: '总量',
+                data: data00,
+                label: {
+                    normal: {
+                        position: 'inner',
+                        show : false
+                    }
+                }
+            },{
+                name:'中性',
+                type:'bar',
+                stack: '总量',
+                data: data05,
+                label: {
+                    normal: {
+                        position: 'inner',
+                        show : false
+                    }
+                }
+            },{
+                name:'正面',
+                type:'bar',
+                stack: '总量',
+                data: data10,
+                label: {
+                    normal: {
+                        position: 'inner',
+                        show : false
+                    }
+                }
+            }]
+        });
+        emotion_dist_per.hideLoading();
+      }
+    };
+    
+    function update_charts() {
+        $.ajax({
+            url: '{{prefix}}/emotion_dist',
+            type: 'GET',
+            success: function(data){
+                update_emotion_dist(data);
+                update_emotion_dist_per(data);
+            }
+        });
+    }
+    update_charts();
+    setInterval(update_charts, 5000);
+
+    var myChart = echarts.init(document.getElementById('gauge_chart'));
+    // 指定图表的配置项和数据
+    myChart.setOption({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        grid:{
+            borderWidth:0,
+            left: '5%',
+            right: '5%',
+            top: '20%',
+            bottom: '5%'
+        },
+        series: [{
+            name: '业务指标',
+            type: 'gauge',
+            radius: "100%",
+            startAngle: 180,
+            endAngle: 0,
+            title : {
+                textStyle: {
+                    fontWeight: 'bolder',
+                    fontSize: 10,
+                    fontStyle: 'italic',
+                    color:"white"
+                }
+            },
+            detail: { formatter: '{value}%' },
+            data: [{ value: 50, name: '完成率' }]
+        }]
+    });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

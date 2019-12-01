@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  monitor:
+    container_name: yqjk
+    restart: always
+    build: ./monitor
+    ports:
+      - "9000:9000"
+    volumes:
+      - /root/filebrowser/sites/root/unicorn/yqjk:/home/project/yqjk
+    command: gunicorn -w 1 -b :9000 yqjk:app
