@@ -7,6 +7,7 @@ import datetime
 from datetime import datetime
 import requests
 import json
+import os
 
 from pymysql import connect,cursors
  
@@ -241,13 +242,21 @@ def get_access_token():
     client_id = "WoxNyVEobxA77BvkSlNf5NlS"
     client_secret = "uvxFFlDMYNyFpaSn10etibU632fHNDjY"
 
-    rt = requests.post("https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=%s&client_secret=%s&" % (client_id, client_secret))
-    print(rt.text)
+    ac_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), ".access_token")
+
+    timestamp = time.time()
+
+    if not os.path.exists(ac_path) or \
+            int(os.path.getmtime(ac_path)) < timestamp:
+        data = requests.post("https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=%s&client_secret=%s&" % (client_id, client_secret)).json()
+        with open(ac_path, 'wb') as fp:
+            fp.write(data["access_token"].encode("utf-8"))
+        os.utime(ac_path, (timestamp, timestamp + data["expires_in"] - 600))
+    return open(ac_path).read().strip()
 
 @app.route('/sentiment_classify', methods=['GET', 'POST'])
 def sentiment_classify():
-    access_token = "24.88e07f0e67d80676824554c1d092687b.2592000.1577624122.282335-17894368"
-    #get_access_token()
+    access_token = get_access_token()
     post_url = "https://aip.baidubce.com/rpc/2.0/nlp/v1/sentiment_classify?charset=UTF-8&access_token=%s" % (access_token)
     request.form
     data = {
@@ -258,4 +267,5 @@ def sentiment_classify():
 
 
 if __name__ == '__main__':
+    #print(get_access_token())
     app.run()
