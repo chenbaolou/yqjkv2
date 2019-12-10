@@ -46,7 +46,30 @@
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
                             <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">热点事件</div>
-                            <div class="data_chart02" id="ftl_sta1111"></div>
+                            <table class="table_data01">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 30%;">标题</td>
+                                        <td id="he_title"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>原帖发表时间</td>
+                                        <td id="he_ytfbsj"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>最新跟帖时间</td>
+                                        <td id="he_zxgtsj"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>当日跟帖数</td>
+                                        <td id="he_drgts"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>累计跟帖数</td>
+                                        <td id="he_ljgts"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -285,26 +308,34 @@
         $("#date_input").val(today_date);
         
         function hot_list() {
-          $.ajax({
-              url: '{{prefix}}/hot_list?selected_date='+selected_date,
-              type: 'GET',
-              success: function(data){
-                //清空table中的html
-                $("#t_test1_1").html("");
-                for(var i = 0;i<data.length;i++){
-                    str1 = "<tr>" + 
-                        "<td>"+data[i].theme + "</td>" +
-                        "<td>"+data[i].min_cm_launch_tme + "</td>" +
-                        "<td>"+data[i].max_cm_launch_tme + "</td>" +
-                        "<td>"+data[i].count_today + "</td>" +
-                        "<td>"+data[i].cnt + "</td>" +                        
-                        "<td><a href='"+data[i].url+"' title='"+data[i].url+"'>"+'看原帖'+"</a></td>" +
-                        //"<td>"+data[i].url+"</td>" +                  
-                        "</tr>";
-                    $("#t_test1_1").append(str1);
+            $.ajax({
+                url: '{{prefix}}/hot_list?selected_date='+selected_date,
+                type: 'GET',
+                success: function(data){
+                    //清空table中的html
+                    $("#t_test1_1").html("");
+                    for(var i = 0;i<data.length;i++){
+                        str1 = "<tr>" + 
+                            "<td>"+data[i].theme + "</td>" +
+                            "<td>"+data[i].min_cm_launch_tme + "</td>" +
+                            "<td>"+data[i].max_cm_launch_tme + "</td>" +
+                            "<td>"+data[i].count_today + "</td>" +
+                            "<td>"+data[i].cnt + "</td>" +                        
+                            "<td><a href='"+data[i].url+"' title='"+data[i].url+"'>"+'看原帖'+"</a></td>" +
+                            //"<td>"+data[i].url+"</td>" +                  
+                            "</tr>";
+                        $("#t_test1_1").append(str1);
+                    }
+                    var hot_event = data[0];
+                    if(hot_event) {
+                        $("#he_title").html(hot_event.theme);
+                        $("#he_ytfbsj").html(hot_event.min_cm_launch_tme);
+                        $("#he_zxgtsj").html(hot_event.max_cm_launch_tme);
+                        $("#he_drgts").html(hot_event.count_today);
+                        $("#he_ljgts").html(hot_event.cnt);
+                    }
                 }
-              }
-            })
+            });
         }
         function bbs_stat() {
           $.ajax({

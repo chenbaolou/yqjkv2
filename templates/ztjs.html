@@ -57,8 +57,8 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">主题1</div>
-                            
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">外部舆论分布</div>
+                            <div id="echart_wordCloud1" class="data_chart02"></div>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">主题2</div>
-                            
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">内部数据分布</div>
+                            <div id="echart_wordCloud2" class="data_chart02"></div>
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,7 @@
 </div>
 
 <script src="{{prefix}}/static/js/echarts.js"></script>
+<script src="{{prefix}}/static/js/echarts-wordcloud.min.js"></script>
 <script src="{{prefix}}/static/js/bstable/js/bootstrap.min.js"></script>
 <script src="{{prefix}}/static/js/bstable/js/bootstrap-table.js"></script>
 <script type="text/javascript" src="{{prefix}}/static/js/jquery.pagination.js"></script>
@@ -297,9 +298,206 @@
                 ]
             }
         ]
-    };
-                    
+    };      
     myChart2.setOption(option2);
+
+    // 
+    var wordCloudChart1 = echarts.init(document.getElementById('echart_wordCloud1'));
+    var wordCloudOpt1 = {
+        
+        tooltip: {
+            show: true
+        },
+        series: [{
+            name: '',//数据提示窗标题
+            type: 'wordCloud',
+            sizeRange: [6, 66],//画布范围，如果设置太大会出现少词（溢出屏幕）
+            rotationRange: [-45, 90],//数据翻转范围
+            //shape: 'circle',
+            textPadding: 0,
+            autoSize: {
+                enable: true,
+                minSize: 6
+            },
+            textStyle: {
+                normal: {
+                    color: function() {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: [{
+                name: "周周刷",
+                value: 100
+            }, {
+                name: "好享贷",
+                value: 87
+            }, {
+                name: "买单吧",
+                value: 69
+            }, {
+                name: "提额",
+                value: 92
+            }, {
+                name: "分期",
+                value: 56
+            }, {
+                name: "征信",
+                value: 23
+            }, {
+                name: "风控",
+                value: 39
+            }, {
+                name: "优逸白",
+                value: 30
+            }, {
+                name: "年费",
+                value: 25
+            }, {
+                name: "沃尔玛",
+                value: 14
+            }, {
+                name: "苏宁白金",
+                value: 9
+            }, {
+                name: "销卡",
+                value: 16
+            }, {
+                name: "费率",
+                value: 25
+            }, {
+                name: "激活",
+                value: 31
+            }, {
+                name: "申卡",
+                value: 70
+            }, {
+                name: "羊毛",
+                value: 48
+            }, {
+                name: "积分",
+                value: 55
+            }, {
+                name: "活动",
+                value: 35
+            }, {
+                name: "阅读器",
+                value: 20
+            }, {
+                name: "注册",
+                value: 19
+            }]//name和value建议用小写，大写有时会出现兼容问题
+        }]
+    };
+    wordCloudChart1.setOption(wordCloudOpt1);
+
+
+    // 
+    var wordCloudChart2 = echarts.init(document.getElementById('echart_wordCloud2'));
+    var wordCloudOpt2 = {
+        backgroundColor: '#F7F7F7',
+        tooltip: {
+            show: true
+        },
+        series: [{
+            name: '',//数据提示窗标题
+            type: 'wordCloud',
+            sizeRange: [6, 66],//画布范围，如果设置太大会出现少词（溢出屏幕）
+            rotationRange: [-45, 90],//数据翻转范围
+            //shape: 'circle',
+            textPadding: 0,
+            autoSize: {
+                enable: true,
+                minSize: 6
+            },
+            textStyle: {
+                normal: {
+                    color: function() {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: [{
+                name: "周周刷",
+                value: 100
+            }, {
+                name: "好享贷",
+                value: 87
+            }, {
+                name: "买单吧",
+                value: 69
+            }, {
+                name: "提额",
+                value: 92
+            }, {
+                name: "分期",
+                value: 56
+            }, {
+                name: "征信",
+                value: 23
+            }, {
+                name: "风控",
+                value: 39
+            }, {
+                name: "优逸白",
+                value: 30
+            }, {
+                name: "年费",
+                value: 25
+            }, {
+                name: "沃尔玛",
+                value: 14
+            }, {
+                name: "苏宁白金",
+                value: 9
+            }, {
+                name: "销卡",
+                value: 16
+            }, {
+                name: "费率",
+                value: 25
+            }, {
+                name: "激活",
+                value: 31
+            }, {
+                name: "申卡",
+                value: 70
+            }, {
+                name: "羊毛",
+                value: 48
+            }, {
+                name: "积分",
+                value: 55
+            }, {
+                name: "活动",
+                value: 35
+            }, {
+                name: "阅读器",
+                value: 20
+            }, {
+                name: "注册",
+                value: 19
+            }]//name和value建议用小写，大写有时会出现兼容问题
+        }]
+    };
+    wordCloudChart2.setOption(wordCloudOpt2);
+
 </script>
 </body>
 </html>

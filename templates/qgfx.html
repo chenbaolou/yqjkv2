@@ -36,8 +36,8 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">仪表盘</div>
-                            <div class="data_chart02" id="gauge_chart"></div>
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">舆情状况</div>
+                            <div class="data_chart02" id="gauge_chart" style="height: 110%;"></div>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">正面评价TOP3</div>
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">正面评价TOP 8</div>
                             <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%;">
                                 <table class="table table-bordered">
                                     <thead>
@@ -57,17 +57,37 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>小娇半年一提</td>
+                                            <td>2019-10-20 19:23:12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>震精了！！！交行直接提了7万固额</td>
+                                            <td>2019-10-20 20:22:23</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>又提额了，开森！</td>
+                                            <td>2019-10-20 22:54:34</td>
+                                        </tr>  
+                                        <tr>
+                                            <td>新版买单吧好像不一样了，会提醒额度可调</td>
+                                            <td>2019-10-20 14:03:41</td>
+                                        </tr>
+                                        <tr>
                                             <td>惠民贷挺好</td>
-                                            <td>2019-11-24 14:37:37</td>
+                                            <td>2019-10-20 23:03:23</td>
+                                        </tr>  
+                                        <tr>
+                                            <td>他来了，他终于来了，跨年的周周刷来了</td>
+                                            <td>2019-10-20 21:45:01</td>
                                         </tr>
                                         <tr>
                                             <td>ETC卡不错</td>
-                                            <td>2019-11-24 14:37:37</td>
-                                        </tr> 
+                                            <td>2019-10-20 14:16:41</td>
+                                        </tr>  
                                         <tr>
-                                            <td>客服态度棒棒哒</td>
-                                            <td>2019-11-24 14:37:37</td>
-                                        </tr>               
+                                            <td>客服态度棒棒哒	</td>
+                                            <td>2019-10-20 17:23:12</td>
+                                        </tr>                   
                                     </tbody>
                                 </table>
                             </div>
@@ -79,7 +99,7 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">负面评价TOP3</div>
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">负面评价TOP 8</div>
                             <div class="dataAllBorder02 over_hide dataAllBorder20" style="height: 92%;">
                                 <table class="table table-bordered">
                                     <thead>
@@ -90,17 +110,37 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>提额慢</td>
-                                            <td>2019-11-24 14:37:37</td>
+                                            <td>过分了，阿娇，一天两通分期电话</td>
+                                            <td>2019-10-20 11:21:09</td>
                                         </tr>
                                         <tr>
-                                            <td>我接到了莫名的催收电话</td>
-                                            <td>2019-11-24 14:37:37</td>
+                                            <td>被交行聚到怀疑人生</td>
+                                            <td>2019-10-20 14:45:37</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>1.2万首卡，几年不提额要销卡吗？</td>
+                                            <td>2019-10-20 19:34:37</td>
+                                        </tr>
+                                        <tr>
+                                            <td>总觉得交行是乱看我钱了，大家进来看看是不是</td>
+                                            <td>2019-10-20 19:21:45</td>
+                                        </tr>
+                                        <tr>
+                                            <td>提额慢</td>
+                                            <td>2019-10-20 14:12:54</td>
+                                        </tr>
+                                        <tr>
+                                            <td>我接到了莫名的催收电话	</td>
+                                            <td>2019-10-20 21:34:12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>交行的跨年周周刷，这次真的很无语</td>
+                                            <td>2019-10-20 15:22:19</td>
                                         </tr> 
                                         <tr>
                                             <td>为什么周周刷没达标</td>
-                                            <td>2019-11-24 14:37:37</td>
-                                        </tr>               
+                                            <td>2019-10-20 16:21:45</td>
+                                        </tr>                
                                     </tbody>
                                 </table>
                             </div>
@@ -472,13 +512,13 @@ $(document).ready(function() {
             borderWidth:0,
             left: '5%',
             right: '5%',
-            top: '20%',
+            top: '5%',
             bottom: '5%'
         },
         series: [{
-            name: '业务指标',
+            name: '满意度',
             type: 'gauge',
-            radius: "100%",
+            radius: "80%",
             startAngle: 180,
             endAngle: 0,
             title : {
@@ -490,7 +530,7 @@ $(document).ready(function() {
                 }
             },
             detail: { formatter: '{value}%' },
-            data: [{ value: 50, name: '完成率' }]
+            data: [{ value: 79, name: '满意度' }]
         }]
     });
 });

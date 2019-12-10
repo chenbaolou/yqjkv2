@@ -13,7 +13,7 @@ from pymysql import connect,cursors
  
 class MysqlHelper:
     def __init__(self,
-        host = "139.217.229.72",
+        host = "52.130.83.174",
         user = "root",
         password = "root",
         database = "bbs_talk",
