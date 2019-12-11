@@ -233,9 +233,9 @@
                     }
                 },
                 data:[
-                    {value:335, name:'主题1', selected:true},
-                    {value:679, name:'主题2'},
-                    {value:1548, name:'主题3'}
+                    {value:335, name:'卡片', selected:true},
+                    {value:679, name:'用卡'},
+                    {value:1548, name:'活动'}
                 ]
             },
             {
@@ -304,7 +304,8 @@
     // 
     var wordCloudChart1 = echarts.init(document.getElementById('echart_wordCloud1'));
     var wordCloudOpt1 = {
-        backgroundColor: '#F7F7F7',
+        // backgroundColor: '#F7F7F7',
+        backgroundColor: 'rgba(247,247,247, 0.4)',
         tooltip: {
             show: true
         },
@@ -403,7 +404,7 @@
     // 
     var wordCloudChart2 = echarts.init(document.getElementById('echart_wordCloud2'));
     var wordCloudOpt2 = {
-        backgroundColor: '#F7F7F7',
+        backgroundColor: 'rgba(247,247,247, 0.4)',
         tooltip: {
             show: true
         },
@@ -434,65 +435,44 @@
                 }
             },
             data: [{
-                name: "周周刷",
-                value: 100
+                name: "办卡",
+                value: 12
             }, {
-                name: "好享贷",
-                value: 87
-            }, {
-                name: "买单吧",
-                value: 69
-            }, {
-                name: "提额",
-                value: 92
+                name: "额度",
+                value: 33
             }, {
                 name: "分期",
-                value: 56
+                value: 22
             }, {
-                name: "征信",
-                value: 23
+                name: "卡片",
+                value: 32
             }, {
-                name: "风控",
-                value: 39
+                name: "客户信息",
+                value: 22
             }, {
-                name: "优逸白",
-                value: 30
+                name: "欠款催收",
+                value: 6
             }, {
-                name: "年费",
-                value: 25
+                name: "渠道",
+                value: 100
             }, {
-                name: "沃尔玛",
-                value: 14
+                name: "商户",
+                value: 2
             }, {
-                name: "苏宁白金",
-                value: 9
+                name: "市场活动",
+                value: 87
             }, {
-                name: "销卡",
-                value: 16
+                name: "投诉",
+                value: 2
             }, {
-                name: "费率",
-                value: 25
+                name: "用卡安全",
+                value: 2
             }, {
-                name: "激活",
-                value: 31
+                name: "增值",
+                value: 8
             }, {
-                name: "申卡",
-                value: 70
-            }, {
-                name: "羊毛",
-                value: 48
-            }, {
-                name: "积分",
-                value: 55
-            }, {
-                name: "活动",
-                value: 35
-            }, {
-                name: "阅读器",
-                value: 20
-            }, {
-                name: "注册",
-                value: 19
+                name: "财务",
+                value: 81
             }]//name和value建议用小写，大写有时会出现兼容问题
         }]
     };

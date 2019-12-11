@@ -36,7 +36,7 @@
                 <div class="dataAllNo01 maginS01">
                     <div class="dataAllBorder01">
                         <div class="dataAllBorder02">
-                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">舆情状况</div>
+                            <div class="data_tit3" style="height: 9%; font-size: 16px; display: flex; align-items: center; justify-content: center;">情感概况</div>
                             <div class="data_chart02" id="gauge_chart" style="height: 110%;"></div>
                         </div>
                     </div>
@@ -516,7 +516,7 @@ $(document).ready(function() {
             bottom: '5%'
         },
         series: [{
-            name: '满意度',
+            name: '情感值',
             type: 'gauge',
             radius: "80%",
             startAngle: 180,
@@ -529,8 +529,13 @@ $(document).ready(function() {
                     color:"white"
                 }
             },
+            axisLine: { 
+                lineStyle: {
+                    color: [[0.2, '#91C7AE'], [0.8, '#63869E'], [1, '#3C7FFF']]
+                }  
+            },   
             detail: { formatter: '{value}%' },
-            data: [{ value: 79, name: '满意度' }]
+            data: [{ value: 82, name: '情感值' }]
         }]
     });
 });
