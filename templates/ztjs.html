@@ -304,8 +304,8 @@
     // 
     var wordCloudChart1 = echarts.init(document.getElementById('echart_wordCloud1'));
     var wordCloudOpt1 = {
-        // backgroundColor: '#F7F7F7',
-        backgroundColor: 'rgba(247,247,247, 0.4)',
+        backgroundColor: '#F7F7F7',
+        //backgroundColor: 'rgba(247,247,247, 0.4)',
         tooltip: {
             show: true
         },
@@ -404,7 +404,8 @@
     // 
     var wordCloudChart2 = echarts.init(document.getElementById('echart_wordCloud2'));
     var wordCloudOpt2 = {
-        backgroundColor: 'rgba(247,247,247, 0.4)',
+        //backgroundColor: 'rgba(247,247,247, 0.4)',
+        backgroundColor: '#F7F7F7',
         tooltip: {
             show: true
         },
@@ -434,46 +435,66 @@
                     shadowColor: '#333'
                 }
             },
-            data: [{
-                name: "办卡",
-                value: 12
-            }, {
-                name: "额度",
-                value: 33
-            }, {
-                name: "分期",
-                value: 22
-            }, {
-                name: "卡片",
-                value: 32
-            }, {
-                name: "客户信息",
-                value: 22
-            }, {
-                name: "欠款催收",
-                value: 6
-            }, {
-                name: "渠道",
-                value: 100
-            }, {
-                name: "商户",
-                value: 2
-            }, {
-                name: "市场活动",
-                value: 87
-            }, {
-                name: "投诉",
-                value: 2
-            }, {
-                name: "用卡安全",
-                value: 2
-            }, {
-                name: "增值",
-                value: 8
-            }, {
-                name: "财务",
-                value: 81
-            }]//name和value建议用小写，大写有时会出现兼容问题
+            data: [
+                {"name": "APP", "value": 2147},
+                {"name": "案件调查", "value": 20},
+                {"name": "保险", "value": 85},
+                {"name": "催收", "value": 201},
+                {"name": "大额交易提醒", "value": 2},
+                {"name": "电话银行", "value": 91},
+                {"name": "冻结", "value": 62},
+                {"name": "短信", "value": 339},
+                {"name": "额度调整", "value": 1089},
+                {"name": "个人信息", "value": 547},
+                {"name": "官网（买单吧）", "value": 119},
+                {"name": "还款", "value": 1538},
+                {"name": "好商贷", "value": 4},
+                {"name": "好享贷", "value": 579},
+                {"name": "货币基金", "value": 15},
+                {"name": "积分", "value": 957},
+                {"name": "积分乐园", "value": 436},
+                {"name": "交易监控", "value": 73},
+                {"name": "解除账户风险管控", "value": 12},
+                {"name": "解冻", "value": 55},
+                {"name": "卡寄送", "value": 80},
+                {"name": "卡片维护", "value": 394},
+                {"name": "卡片信息", "value": 67},
+                {"name": "开具证明文件", "value": 123},
+                {"name": "开卡", "value": 86},
+                {"name": "客服热线", "value": 930},
+                {"name": "密码维护", "value": 169},
+                {"name": "清算", "value": 148},
+                {"name": "商户", "value": 76},
+                {"name": "申请", "value": 367},
+                {"name": "申请进度查询", "value": 42},
+                {"name": "审批", "value": 46},
+                {"name": "实施账户风险管控", "value": 52},
+                {"name": "市场活动", "value": 1838},
+                {"name": "手机银行", "value": 5},
+                {"name": "授权", "value": 44},
+                {"name": "刷得保", "value": 1},
+                {"name": "刷卡金", "value": 165},
+                {"name": "双向短信", "value": 18},
+                {"name": "天使贷", "value": 6},
+                {"name": "停催", "value": 13},
+                {"name": "投诉处理", "value": 62},
+                {"name": "网上银行", "value": 8},
+                {"name": "微信", "value": 39},
+                {"name": "现金分期", "value": 57},
+                {"name": "想分就分", "value": 199},
+                {"name": "销卡、销户", "value": 513},
+                {"name": "协商还款", "value": 18},
+                {"name": "信用保障", "value": 34},
+                {"name": "信用记录", "value": 107},
+                {"name": "用卡无忧", "value": 164},
+                {"name": "预借现金", "value": 39},
+                {"name": "在线客服", "value": 204},
+                {"name": "账单", "value": 641},
+                {"name": "账单生成短信提醒", "value": 6},
+                {"name": "账务查询", "value": 392},
+                {"name": "争议", "value": 121},
+                {"name": "支付", "value": 244}
+            ]
         }]
     };
     wordCloudChart2.setOption(wordCloudOpt2);
