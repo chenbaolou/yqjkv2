@@ -113,7 +113,11 @@
             top: 50,
             bottom: 50,
             axisTick: {},
-            axisLabel: {},
+            axisLabel: {
+                textStyle:{
+                    color:"#FFFFFF"
+                }
+            },
             type: 'time',
             axisPointer: {
                 animation: true,
@@ -149,6 +153,11 @@
                     emphasis: {
                         shadowBlur: 20,
                         shadowColor: 'rgba(0, 0, 0, 0.8)'
+                    }
+                },
+                label: {
+                    normal: {
+                        show: false
                     }
                 },
                 data: [['2019/09/08',10,'买单吧'],['2019/09/09',15,'买单吧'],['2019/09/10',35,'买单吧'],
