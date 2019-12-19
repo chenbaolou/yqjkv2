@@ -59,9 +59,18 @@
                                 <button class="chose_enter" style="width: 110px; margin-left: 43%;" id="ztgn_btn">提交主题归纳</button>
                             </div>
                             <div id="ztgn_ing" style="margin-top: 30px; text-align: center; display: none;">
-                                    <img src="{{prefix}}/static/images/compute.gif"/>
-                                </div>
-                                <div class="data_chart02" id="ztgn_result" style="display: none;"></div>
+                                <img src="{{prefix}}/static/images/compute.gif"/>
+                            </div>
+                            <div class="data_chart02" id="ztgn_result" style="width: 80%; height: 40%; margin:auto; margin-top: 60px; color: white; text-align: center; display: none;">
+                                <p style="font-size: 28px;">
+                                    感谢您对
+                                    <span style="font-size: 38px;">
+                                        市场活动
+                                    </span>
+                                    
+                                    的反馈
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,10 +178,26 @@ $(document).ready(function(){
         $("#qgfx_result").hide();
         $("#qgfx_ing").show();
     });
-    $("#qgfx_ing").click(function(){
-        $("#qgfx_ing").hide();
-        $("#qgfx_result").show();
+    // $("#qgfx_ing").click(function(){
+    //     $("#qgfx_ing").hide();
+    //     $("#qgfx_result").show();
+    // });
+
+    $("#ztgn_btn").click(function(){
+        var input_text = $.trim($("#ztgn_input").val());
+        if(input_text == "") {
+            alert("输入内容不能为空");
+            return false;
+        }
+        $("#ztgn_result").hide();
+        $("#ztgn_ing").show();
+
+        setTimeout(function(){
+            $("#ztgn_result").show();
+            $("#ztgn_ing").hide();
+        }, 3000);
     });
+
 });
 </script>
 </body>
