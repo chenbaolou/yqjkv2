@@ -265,6 +265,14 @@ def sentiment_classify():
     rt = requests.post(post_url, data=json.dumps(data))
     return jsonify(rt.json())
 
+@app.route('/content_classify', methods=['GET', 'POST'])
+def content_classify():
+    from lr.LR import classify
+    content = request.form.get("text") or '交通银行信用卡还款很方便'
+    
+    return jsonify({
+        'result': classify(content)
+    })
 
 if __name__ == '__main__':
     #print(get_access_token())
