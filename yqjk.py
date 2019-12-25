@@ -13,7 +13,7 @@ from pymysql import connect,cursors
  
 class MysqlHelper:
     def __init__(self,
-        host = "52.130.83.174",
+        host = "40.73.64.250",
         user = "root",
         password = "root",
         database = "bbs_talk",
@@ -269,9 +269,12 @@ def sentiment_classify():
 def content_classify():
     from lr.LR import classify
     content = request.form.get("text") or '交通银行信用卡还款很方便'
-    
+    res = classify(content)
+    if content.find('还款') == -1:
+        if res == '还款':
+            res = '交行卡中心'
     return jsonify({
-        'result': classify(content)
+        'result': res
     })
 
 if __name__ == '__main__':
